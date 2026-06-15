@@ -1,0 +1,25 @@
+.skill-badge {
+    border-radius: 8px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: transform 0.3s ease, opacity 0.15s ease;
+    display: inline-block;
+}
+
+.skill-badge:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+.skill-badge.light {
+    background: #d7d9de;
+    color: #221abb;
+}
+
+.skill-badge.dark {
+    background: #1e2a4a;
+    color: #a5b4fc;
+}

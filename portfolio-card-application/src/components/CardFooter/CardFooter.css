@@ -1,0 +1,133 @@
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px 22px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.footer-theme-label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.footer-theme-label.light {
+    color: #333;
+}
+
+.footer-theme-label.dark {
+    color: #7f8492;
+}
+
+.footer-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-button {
+    background-color: transparent;
+    border: 1px solid #cccccc;
+    padding: 4px 4px;
+    
+    margin: 4px 4px 4px 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-button.light {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.nav-button.dark {
+    background-color: #2a2a2a;
+    color: #efe9e9;
+}
+
+.nav-button:hover {
+    opacity: 0.8;
+}
+
+.nav-count {
+    font-size: 12px;
+    color: #7f8492;
+    min-width: 20px;
+    text-align: center;
+}
+
+.nav-count.light {
+    color: #7f8492;
+}
+
+.nav-count.dark {
+    color: #7f8492;
+}
+
+.footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.like-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.like-button.light {
+    color: #333;
+}
+
+.like-button.dark {
+    color: #7f8492;
+}
+
+.like-button.liked {
+    color: #e0245e;
+}
+
+.like-button:hover {
+    transform: scale(1.05);
+}
+
+.like-icon {
+    font-size: 16px;
+}
+
+.contact-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #5243e8;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 10px;
+    letter-spacing: 0.02em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.contact-button:hover {
+    background-color: #4030b3;
+    transform: translateY(-1px);
+}
+
+.contact-button::active {
+    transform: translateY(0);
+}

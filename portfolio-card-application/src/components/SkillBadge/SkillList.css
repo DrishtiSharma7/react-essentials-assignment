@@ -1,0 +1,26 @@
+.skill-list {
+    padding: 28px 28px 0;
+}
+
+.skill-list-title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 10px;
+}
+
+.skill-list.dark {
+    color: #7f8492;
+}
+
+.skill-list.light {
+    color: #333;
+}
+
+.skill-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 0;
+}

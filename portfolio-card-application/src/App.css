@@ -1,0 +1,17 @@
+.app {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'DM Sans', 'Sedoe Ui', sans-serif;
+    transition: background-color 0.3s ease;
+    padding: 24px 16px;
+}
+
+.app.dark {
+    background-color: #121212;
+}
+.app.light {
+    background-color: #f0f0f0;
+}
