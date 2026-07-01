@@ -1,5 +1,5 @@
 .profile-header{
-    padding: 28px 28px 0;
+    padding: 28px 28px 24px;
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -15,11 +15,10 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    margin-bottom: 10px;
     object-fit: cover;
     border: 3px solid #5243e8;
     flex-shrink: 0;
-    transition: transform 0.2e ease;
+    transition: transform 0.2s ease;
 }
 
 .profile-image:hover {
@@ -27,12 +26,12 @@
 }
 
 .profile-info{
+    margin-left: 20px;
     display: flex;
     flex-direction: column;
 }
 
 .profile-name{
-    margin-left: 50px;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -47,15 +46,15 @@
 }
 
 .profile-title{
-    margin-left: 50px;
     font-size: 14px;
     font-weight: 500;
 }
 
 .profile-bio{
-    margin-top: 18px 0 0;
+    margin: 18px 0 0;
     font-size: 14px;
     line-height: 1.7;
+    text-align: justify;
 }
 
 .profile-bio.light {
@@ -64,4 +63,62 @@
 
 .profile-bio.dark {
     color: #7f8492;
+}
+
+@media (max-width: 768px) {
+
+    .profile-header {
+        padding: 20px;
+    }
+
+    .profile-image {
+        width: 90px;
+        height: 90px;
+    }
+
+    .profile-name {
+        font-size: 18px;
+    }
+
+    .profile-title {
+        font-size: 13px;
+    }
+
+    .profile-bio {
+        font-size: 13px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .profile-header-left {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-info {
+        margin-left: 0;
+        align-items: center;
+    }
+
+    .profile-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .profile-name {
+        font-size: 20px;
+    }
+
+    .profile-title {
+        font-size: 14px;
+    }
+
+    .profile-bio {
+        text-align: justify;
+        font-size: 13px;
+    }
+
 }
