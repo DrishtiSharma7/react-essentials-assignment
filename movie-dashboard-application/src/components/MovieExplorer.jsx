@@ -197,9 +197,13 @@ function MovieExplorer() {
     <div className={`app ${darkMode ? "dark" : "light"}`}>
       <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
         {darkMode ? (
-          <><Sun size={16} /> <span>Light</span></>
+          <>
+            <Sun size={16} /> <span>Light</span>
+          </>
         ) : (
-          <><Moon size={16} /> <span>Dark</span></>
+          <>
+            <Moon size={16} /> <span>Dark</span>
+          </>
         )}
       </button>
       <div className="box">
@@ -216,11 +220,13 @@ function MovieExplorer() {
         </div>
         <div className="main-content">
           <div className="search-bar">
-            <div className="search-input-wrapper">
+            <div
+              className={`search-input-wrapper ${darkMode ? "dark" : "light"}`}
+            >
               <Search size={16} className="search-icon" color="#777" />
               {/* Inputs */}
               <input
-                className="search-input"
+                className={`search-input ${darkMode ? "dark" : "light"}`}
                 type="text"
                 placeholder="Search movie"
                 value={searchTerm}
@@ -268,7 +274,9 @@ function MovieExplorer() {
               <p className="result-count">{filteredMovies.length} results</p>
             </div>
             {filteredMovies.length === 0 ? (
-              <p className="empty-state">No movies found.</p>
+              <p className={`empty-state ${darkMode ? "dark" : "light"}`}>
+                No movies found.
+              </p>
             ) : (
               filteredMovies.map((movie) => (
                 <div
@@ -301,12 +309,16 @@ function MovieExplorer() {
                       {/* Second Line */}
                       <div className="movie-bottom">
                         <span className="movie-rating">
-                          <Star size={12} color="orange" fill="orange"/> {movie.rating}
+                          <Star size={12} color="orange" fill="orange" />{" "}
+                          {movie.rating}
                         </span>
 
                         <div className="movie-tags">
                           {movie.tags.map((tag) => (
-                            <span key={tag} className="tag-pill">
+                            <span
+                              key={tag}
+                              className={`tag-pill ${darkMode ? "dark" : "light"}`}
+                            >
                               {tag}
                             </span>
                           ))}
@@ -317,8 +329,8 @@ function MovieExplorer() {
 
                   <button
                     className={`fav-button ${
-                      favorites.includes(movie.id) ? "active" : "inactive"
-                    }`}
+                      darkMode ? "dark" : "light"
+                    } ${favorites.includes(movie.id) ? "active" : "inactive"}`}
                     onClick={() => toggleFavorite(movie.id)}
                   >
                     {favorites.includes(movie.id) ? (
@@ -350,15 +362,23 @@ function MovieExplorer() {
                 Favourite Movies
               </h2>
             </div>
-            <div className="fav-list">
+            <div className={`fav-list ${darkMode ? "dark" : "light"}`}>
               {favoriteMovies.length === 0 ? (
-                <p className="empty-state">No favourite movies yet.</p>
+                <p className={`empty-state ${darkMode ? "dark" : "light"}`}>
+                  No favourite movies yet.
+                </p>
               ) : (
                 favoriteMovies.map((movie) => (
-                  <div key={movie.id} className={`favorite-chip ${darkMode ? "dark" : "light"}`} >
+                  <div
+                    key={movie.id}
+                    className={`favorite-chip ${darkMode ? "dark" : "light"}`}
+                  >
                     <Heart size={14} fill="#e74c3c" color="#e74c3c" />
                     <span>{movie.title}</span>
-                    <button className={`remove-fav ${darkMode ? "dark" : "light"}`} onClick={() => toggleFavorite(movie.id)} >
+                    <button
+                      className={`remove-fav ${darkMode ? "dark" : "light"}`}
+                      onClick={() => toggleFavorite(movie.id)}
+                    >
                       <X size={14} color="#e74c3c" />
                     </button>
                   </div>
