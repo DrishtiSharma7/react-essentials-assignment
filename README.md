@@ -67,7 +67,7 @@ An interactive movie dashboard that allows users to explore and manage tasks inf
 - JavaScript (ES6+)
 
 #### Live Link
-
+https://react-essentials-assignment-ju3c.vercel.app/
 
 ## Learning Objectives
 
