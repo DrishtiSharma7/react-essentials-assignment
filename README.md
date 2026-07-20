@@ -49,6 +49,26 @@ https://react-essentials-assignment-4x4f.vercel.app/
 
 ---
 
+### 3. Task Manager
+
+An interactive movie dashboard that allows users to explore and manage tasks information through a clean and responsive interface.
+
+#### Features
+- Movie listing
+- Search functionality
+- Filtering options
+- Dynamic rendering using React
+- Responsive layout
+- Interactive user experience
+
+#### Technologies
+- React.js
+- CSS3
+- JavaScript (ES6+)
+
+#### Live Link
+
+
 ## Learning Objectives
 
 This assignment demonstrates:
