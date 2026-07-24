@@ -1,0 +1,83 @@
+@reference "./index.css";
+
+.weather-card {
+  @apply w-full max-w-md rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl p-8 text-white transition-all duration-300 hover:scale-[1.02];
+}
+
+.city-name {
+  @apply text-center text-3xl font-bold tracking-wide mb-6;
+}
+
+.weather-icon-container {
+  @apply flex justify-center items-center text-8xl mb-8 p-4;
+
+  animation: cloudFloat 8s ease-in-out infinite;
+}
+
+@keyframes cloudFloat {
+  0% {
+    transform: translate(-90px, 0px);
+  }
+
+  25% {
+    transform: translate(-30px, -40px);
+  }
+
+  50% {
+    transform: translate(90px, 0px);
+  }
+
+  75% {
+    transform: translate(30px, 40px);
+  }
+
+  100% {
+    transform: translate(-90px, 0px);
+  }
+}
+
+.weather-details-grid {
+  @apply flex flex-col gap-4 mb-4 w-full;
+}
+
+.detail-item {
+  @apply flex items-center justify-between rounded-xl bg-white/10 px-5 py-4 border border-white/10;
+}
+
+.detail-label {
+  @apply flex items-center gap-2 text-gray-200 font-medium;
+}
+
+.detail-value {
+  @apply text-xl font-bold text-white;
+}
+
+.condition-text {
+  @apply capitalize;
+}
+
+@media (max-width: 480px) {
+  .weather-card {
+    @apply p-5 rounded-2xl;
+  }
+
+  .city-name {
+    @apply text-3xl;
+  }
+
+  .weather-icon-container {
+    @apply text-7xl;
+  }
+
+  .detail-item {
+    @apply px-4 py-3;
+  }
+
+  .detail-label {
+    @apply text-sm;
+  }
+
+  .detail-value {
+    @apply text-lg;
+  }
+}

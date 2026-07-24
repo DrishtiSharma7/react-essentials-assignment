@@ -69,6 +69,32 @@ An interactive movie dashboard that allows users to explore and manage tasks inf
 #### Live Link
 https://react-essentials-assignment-ju3c.vercel.app/
 
+---
+
+### 4. Weather Application
+
+A responsive weather application that allows users to search for any city and view real-time weather information using the OpenWeather API.
+
+#### Features
+- Search weather by city name
+- Real-time weather data
+- Temperature display
+- Weather condition with icons
+- Humidity information
+- Wind speed details
+- Responsive design
+- Error handling for invalid city names
+- Loading indicator while fetching data
+
+#### Technologies
+- React.js
+- CSS3
+- JavaScript (ES6+)
+- OpenWeather API
+
+#### Live Link
+
+
 ## Learning Objectives
 
 This assignment demonstrates:
@@ -80,8 +106,12 @@ This assignment demonstrates:
 - Event Handling
 - Conditional Rendering
 - List Rendering
+- API Integration
+- Fetch API & Async/Await
 - Component Reusability
 - Responsive Frontend Development
+- Environment Variables (Vite)
+- TailwindCSS
 
 ## Installation
 
