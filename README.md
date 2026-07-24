@@ -93,7 +93,7 @@ A responsive weather application that allows users to search for any city and vi
 - OpenWeather API
 
 #### Live Link
-https://react-essentials-assignment-r5de-coxcbfldy.vercel.app/
+https://react-essentials-assignment-r5de.vercel.app/
 
 ## Learning Objectives
 
