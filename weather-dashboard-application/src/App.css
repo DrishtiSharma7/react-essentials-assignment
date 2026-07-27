@@ -51,7 +51,7 @@
 }
 
 .error-text {
-  @apply mt-6 text-center rounded-xl border border-red-500 bg-red-500/20 px-5 py-3 text-red-300 font-semibold shadow-lg;
+  @apply mt-4  text-center rounded-xl border border-red-500 bg-red-500/20 px-5 py-3 text-red-300 font-semibold shadow-lg;
 }
 
 @media (max-width: 640px) {
