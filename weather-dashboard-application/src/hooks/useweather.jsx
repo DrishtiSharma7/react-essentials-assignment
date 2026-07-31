@@ -10,15 +10,12 @@ const useWeather = (city) => {
   const fetchWeather = async (cityName, controller) => {
     setLoading(true);
     setError("");
-
     try {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`,
         controller ? { signal: controller.signal } : {},
       );
-
       const data = await response.json();
-
       if (data.cod !== 200) {
         setError("❌ City not found!");
         setWeather(null);
@@ -38,24 +35,18 @@ const useWeather = (city) => {
 
   useEffect(() => {
     if (!city) return;
-
     const controller = new AbortController();
-
     fetchWeather(city, controller);
-
     return () => controller.abort();
   }, [city]);
 
   useEffect(() => {
     if (!city) return;
-
     const interval = setInterval(() => {
       fetchWeather(city);
     }, 5000);
-
     return () => clearInterval(interval);
   }, [city]);
-
   return { weather, loading, error };
 };
 

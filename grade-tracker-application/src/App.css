@@ -1,8 +1,0 @@
-.App{
-  @apply w-full h-screen flex flex-col items-center justify-center bg-gray-100;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.App-header{
-  @apply text-3xl font-bold text-gray-800;
-}

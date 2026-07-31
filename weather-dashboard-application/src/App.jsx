@@ -44,10 +44,6 @@ function App() {
         </button>
       </div>
 
-      {loading && (
-        <p className="loading-text">Loading weather data...</p>
-      )}
-
       {error && <p className="error-text">{error}</p>}
       <div className="weather-container">
         <WeatherCard weather={weather} />
