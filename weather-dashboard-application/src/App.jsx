@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import WeatherCard from "./weatherCard";
 import { Search } from "lucide-react";
-import useWeather from "../hooks/useWeather";
+import useWeather from "./hooks/useweather";
 
 function App() {
   const [searchInput, setSearchInput] = useState("");
