@@ -29,21 +29,7 @@
 }
 
 .weather-container {
-  @apply flex-1 flex justify-center items-center w-full h-full;
-}
-
-.weather-card {
-  @apply bg-white/10
-    backdrop-blur-xl
-    border border-white/20
-    shadow-2xl
-    text-white
-    w-full
-    max-w-md
-    rounded-lg
-    flex
-    flex-col
-    items-center;
+  @apply flex-1 flex justify-center items-start w-full pt-6 overflow-y-auto;
 }
 
 .loading-text {
