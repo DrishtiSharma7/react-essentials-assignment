@@ -1,74 +1,182 @@
 import { Component } from "react";
 
 class AddStudentForm extends Component {
-  state = {
-    name: "",
-    grade: "",
-    error: "",
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "",
+      maths: "",
+      english: "",
+      science: "",
+      computer: "",
+      hindi: "",
+      error: "",
+    };
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+      error: "",
+    });
   };
 
-  handleSubmit = () => {
-    const { name, grade } = this.state;
+  validateMarks = (value) => {
+    const num = Number(value);
+    return !isNaN(num) && num >= 0 && num <= 100;
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    const { name, maths, english, science, computer, hindi } = this.state;
 
     if (!name.trim()) {
-      this.setState({ error: "Name cannot be empty" });
-      return;
-    }
-
-    const gradeNum = Number(grade);
-
-    if (isNaN(gradeNum) || gradeNum < 0 || gradeNum > 100) {
       this.setState({
-        error: "Grade must be between 0 and 100",
+        error: "Student name is required.",
       });
       return;
     }
 
-    this.props.onAdd(name, gradeNum);
+    if (!/^[A-Za-z\s]+$/.test(name.trim())) {
+      this.setState({
+        error: "Name should contain only letters and spaces.",
+      });
+      return;
+    }
+
+    const marks = {
+      maths,
+      english,
+      science,
+      computer,
+      hindi,
+    };
+
+    for (const subject in marks) {
+      if (!this.validateMarks(marks[subject])) {
+        this.setState({
+          error: `${subject.charAt(0).toUpperCase() + subject.slice(1)} marks must be between 0 and 100.`,
+        });
+        return;
+      }
+    }
+
+    this.props.onAdd({
+      id: Date.now(),
+      name: name.trim(),
+      marks: {
+        maths: Number(maths),
+        english: Number(english),
+        science: Number(science),
+        computer: Number(computer),
+        hindi: Number(hindi),
+      },
+    });
 
     this.setState({
       name: "",
-      grade: "",
+      maths: "",
+      english: "",
+      science: "",
+      computer: "",
+      hindi: "",
       error: "",
     });
   };
 
   render() {
     return (
-      <div className="space-y-6">
-        <div className="flex flex-col sm:flex-row gap-3">
-          <input
-            id="studentName"
-            name="studentName"
-            type="text"
-            placeholder="Student Name"
-            value={this.state.name}
-            onChange={(e) => this.setState({ name: e.target.value })}
-            className="py-2 px-4 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
-          />
+      <form
+        onSubmit={this.handleSubmit}
+        className="mb-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-lg sm:p-6"
+      >
+        <h2 className="mb-5 text-lg font-bold text-slate-800 sm:text-lg">
+          Add New Student
+        </h2>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="md:col-span-2">
+            <input
+              type="text"
+              name="name"
+              placeholder="Student Name"
+              value={this.state.name}
+              onChange={this.handleChange}
+              className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+            />
+          </div>
 
           <input
-            id="studentGrade"
-            name="studentGrade"
             type="number"
-            placeholder="Grade"
-            value={this.state.grade}
-            onChange={(e) => this.setState({ grade: e.target.value })}
-            className="py-2 px-4 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+            name="maths"
+            placeholder="Maths"
+            value={this.state.maths}
+            onChange={this.handleChange}
+            min="0"
+            max="100"
+            className="rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
           />
 
-          <button
-            onClick={this.handleSubmit}
-            className="bg-indigo-600 text-white px-6 py-3 rounded-lg whitespace-nowrap"
-          >
-            Add Student
-          </button>
+          <input
+            type="number"
+            name="english"
+            placeholder="English"
+            value={this.state.english}
+            onChange={this.handleChange}
+            min="0"
+            max="100"
+            className="rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+          />
+
+          <input
+            type="number"
+            name="science"
+            placeholder="Science"
+            value={this.state.science}
+            onChange={this.handleChange}
+            min="0"
+            max="100"
+            className="rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+          />
+
+          <input
+            type="number"
+            name="computer"
+            placeholder="Computer"
+            value={this.state.computer}
+            onChange={this.handleChange}
+            min="0"
+            max="100"
+            className="rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+          />
+
+          <input
+            type="number"
+            name="hindi"
+            placeholder="Hindi"
+            value={this.state.hindi}
+            onChange={this.handleChange}
+            min="0"
+            max="100"
+            className="rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 md:col-span-2"
+          />
         </div>
 
         {this.state.error && (
-          <p className="text-sm text-red-500">{this.state.error}</p>
+          <p className="mt-3 text-sm font-medium text-red-600">
+            {this.state.error}
+          </p>
         )}
-      </div>
+
+        <button
+          type="submit"
+          className="mt-5 w-full rounded-lg bg-indigo-600 py-3 font-semibold text-white transition hover:bg-indigo-700"
+        >
+          Add Student
+        </button>
+      </form>
     );
   }
 }

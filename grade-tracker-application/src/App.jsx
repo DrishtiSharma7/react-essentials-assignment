@@ -1,119 +1,214 @@
 import { Component } from "react";
-import StudentList from "./components/StudentList";
 import AddStudentForm from "./components/AddStudentForm";
+import StudentList from "./components/StudentList";
+import SummaryCards from "./components/SummaryCards";
+import FilterSort from "./components/FilterSort";
 
 class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       students: [],
       filter: "all",
-      sortOrder: null,
+      sortSubject: "maths",
+      sortOrder: "asc",
     };
   }
 
   componentDidMount() {
+    console.log("App Mounted");
+
     this.setState({
       students: [
-        { id: 1, name: "Payal Sharma", grade: 88 },
-        { id: 2, name: "Raj Kumar", grade: 29 },
-        { id: 3, name: "Piyush Shriwastava", grade: 96 },
+        {
+          id: 1,
+          name: "Payal Sharma",
+          marks: {
+            maths: 88,
+            english: 72,
+            science: 95,
+            computer: 91,
+            hindi: 67,
+          },
+        },
+        {
+          id: 2,
+          name: "Raj Kumar",
+          marks: {
+            maths: 35,
+            english: 45,
+            science: 50,
+            computer: 30,
+            hindi: 60,
+          },
+        },
+        {
+          id: 3,
+          name: "Piyush Srivastava",
+          marks: {
+            maths: 97,
+            english: 92,
+            science: 90,
+            computer: 98,
+            hindi: 89,
+          },
+        },
       ],
     });
   }
 
-  addStudent = (name, grade) => {
-    this.setState((prev) => ({
-      students: [...prev.students, { id: Date.now(), name, grade }],
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.students.length !== this.state.students.length) {
+      console.log(
+        `Students changed : ${prevState.students.length} → ${this.state.students.length}`,
+      );
+    }
+
+    if (prevState.students !== this.state.students) {
+      console.log("Student data updated");
+    }
+  }
+
+  componentWillUnmount() {
+    console.log("App Unmounted");
+  }
+
+  addStudent = (student) => {
+    this.setState((prevState) => ({
+      students: [...prevState.students, student],
     }));
   };
 
   removeStudent = (id) => {
-    if (window.confirm("Are you sure you want to remove this student?")) {
-      this.setState((prev) => ({
-        students: prev.students.filter((s) => s.id !== id),
-      }));
-    }
+    if (!window.confirm("Remove this student?")) return;
+
+    this.setState((prevState) => ({
+      students: prevState.students.filter((student) => student.id !== id),
+    }));
   };
 
-  updateGrade = (id, newGrade) => {
-    this.setState((prev) => ({
-      students: prev.students.map((s) =>
-        s.id === id ? { ...s, grade: newGrade } : s,
+  updateMarks = (id, updatedMarks) => {
+    this.setState((prevState) => ({
+      students: prevState.students.map((student) =>
+        student.id === id
+          ? {
+              ...student,
+              marks: updatedMarks,
+            }
+          : student,
       ),
     }));
   };
 
-  setFilter = (filter) => this.setState({ filter });
+  setFilter = (filter) => {
+    this.setState({
+      filter,
+    });
+  };
 
-  toggleSort = () => {
-    this.setState((prev) => ({
-      sortOrder: prev.sortOrder === "asc" ? "desc" : "asc",
+  changeSortSubject = (subject) => {
+    this.setState({
+      sortSubject: subject,
+    });
+  };
+
+  toggleSortOrder = () => {
+    this.setState((prevState) => ({
+      sortOrder: prevState.sortOrder === "asc" ? "desc" : "asc",
     }));
   };
 
+  isPassed(student) {
+    return Object.values(student.marks).every((mark) => mark >= 40);
+  }
+
   getVisibleStudents() {
-    let list = [...this.state.students];
+    let students = [...this.state.students];
 
-    if (this.state.filter === "passed")
-      list = list.filter((s) => s.grade >= 40);
+    if (this.state.filter === "passed") {
+      students = students.filter((student) => this.isPassed(student));
+    }
 
-    if (this.state.filter === "failed") list = list.filter((s) => s.grade < 40);
+    if (this.state.filter === "failed") {
+      students = students.filter((student) => !this.isPassed(student));
+    }
 
-    if (this.state.sortOrder === "asc") list.sort((a, b) => a.grade - b.grade);
+    students.sort((a, b) => {
+      const first = a.marks[this.state.sortSubject];
+      const second = b.marks[this.state.sortSubject];
 
-    if (this.state.sortOrder === "desc") list.sort((a, b) => b.grade - a.grade);
+      return this.state.sortOrder === "asc" ? first - second : second - first;
+    });
 
-    return list;
+    return students;
+  }
+
+  getSummary() {
+    const totalStudents = this.state.students.length;
+
+    const passedStudents = this.state.students.filter((student) =>
+      this.isPassed(student),
+    ).length;
+
+    const failedStudents = totalStudents - passedStudents;
+
+    return {
+      totalStudents,
+      passedStudents,
+      failedStudents,
+    };
   }
 
   render() {
+    const summary = this.getSummary();
+
     return (
-      <div className="min-h-screen bg-slate-100 flex justify-center p-5">
-        <div className="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-6">
-          <h1 className="text-3xl font-bold text-center mb-6">
-            Student Grade Tracker
-          </h1>
+      <div className="min-h-screen bg-slate-100 px-3 py-5 sm:px-5 lg:px-8">
+        <div className="mx-auto w-full max-w-3xl">
+          {/* Heading */}
+          <div className="mb-4 text-center">
+            <h1 className="text-xl font-bold text-slate-800 sm:text-4xl lg:text-3xl">
+              Student Grade Tracker
+            </h1>
 
-          <AddStudentForm onAdd={this.addStudent} />
-
-          <div className="flex flex-col md:flex-row gap-4 my-6">
-            <div className="flex gap-3 flex-wrap sm:flex-nowrap">
-              <button
-                onClick={() => this.setFilter("all")}
-                className="px-8 py-2 rounded-lg border hover:bg-slate-100"
-              >
-                All
-              </button>
-
-              <button
-                onClick={() => this.setFilter("passed")}
-                className="px-5 py-2 rounded-lg border hover:bg-green-100"
-              >
-                Passed
-              </button>
-
-              <button
-                onClick={() => this.setFilter("failed")}
-                className="px-6 py-2 rounded-lg border hover:bg-red-100"
-              >
-                Failed
-              </button>
-            </div>
-
-            <button
-              onClick={this.toggleSort}
-              className="bg-yellow-500 text-white px-6 py-3 rounded-lg whitespace-nowrap hover:bg-yellow-600 sm:ml-auto"
-            >
-              Sort ({this.state.sortOrder || "None"})
-            </button>
+            <p className="mt-0 text-sm text-slate-500 sm:text-base">
+              Class Components • React Lifecycle Methods
+            </p>
           </div>
 
-          <StudentList
-            students={this.getVisibleStudents()}
-            onRemove={this.removeStudent}
-            onUpdateGrade={this.updateGrade}
-          />
+          {/* Add Student */}
+          <AddStudentForm onAdd={this.addStudent} />
+
+          {/* Summary */}
+          <div className="mt-6">
+            <SummaryCards
+              total={summary.totalStudents}
+              passed={summary.passedStudents}
+              failed={summary.failedStudents}
+            />
+          </div>
+
+          {/* Filter + Sort */}
+          <div className="mt-6">
+            <FilterSort
+              filter={this.state.filter}
+              sortSubject={this.state.sortSubject}
+              sortOrder={this.state.sortOrder}
+              onFilter={this.setFilter}
+              onSubjectChange={this.changeSortSubject}
+              onToggleSort={this.toggleSortOrder}
+            />
+          </div>
+
+          {/* Students */}
+          <div className="mt-6">
+            <StudentList
+              students={this.getVisibleStudents()}
+              onRemove={this.removeStudent}
+              onUpdateMarks={this.updateMarks}
+            />
+          </div>
         </div>
       </div>
     );
