@@ -111,12 +111,12 @@ class StudentItem extends Component {
 
     return (
       <div
-        className={`rounded-2xl border-l-4 bg-white p-5 shadow-md transition-all hover:shadow-xl ${
+        className={`rounded-2xl border-l-4 bg-white p-2 sm:p-4 shadow-md transition-all hover:shadow-xl ${
           overallPassed ? "border-green-500" : "border-red-500"
         }`}
       >
         {/* Header */}
-        <div className="mb-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div className="mb-2 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-xl font-bold text-slate-800">
               {student.name}
@@ -139,13 +139,13 @@ class StudentItem extends Component {
         </div>
 
         {/* Subject Marks */}
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-2">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-2 lg:grid-cols-2">
           {subjects.map((subject) => (
             <div
               key={subject}
-              className="rounded-xl bg-slate-50 p-3 flex items-center justify-between"
+              className="rounded-xl bg-slate-50 gap-2 p-3 flex items-center justify-between"
             >
-              <p className="text-sm font-semibold capitalize text-slate-600">
+              <p className="text-sm gap-2 font-semibold capitalize text-slate-600">
                 {subject}
               </p>
 
@@ -172,7 +172,7 @@ class StudentItem extends Component {
           ))}
         </div>
         {/* Summary */}
-        <div className="mt-5 grid grid-cols-1 gap-4 rounded-xl bg-slate-100 p-4 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-3 rounded-xl bg-slate-100 p-4 sm:grid-cols-3 mt-2">
           <div>
             <p className="text-sm text-slate-500">Total Marks</p>
             <h3 className="text-xl font-bold text-slate-800">{total} / 500</h3>
@@ -199,7 +199,7 @@ class StudentItem extends Component {
         </div>
 
         {/* Buttons */}
-        <div className="mt-5 flex flex-wrap gap-3">
+        <div className="mt-2 flex flex-wrap gap-4 px-2">
           {isEditing ? (
             <>
               <button
