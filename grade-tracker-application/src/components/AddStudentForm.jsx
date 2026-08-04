@@ -97,71 +97,129 @@ class AddStudentForm extends Component {
         </h2>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          {/* Student Name */}
           <div className="md:col-span-2">
+            <label
+              htmlFor="name"
+              className="mb-2 block text-sm font-medium text-slate-700"
+            >
+              Student Name
+            </label>
             <input
+              id="name"
               type="text"
               name="name"
-              placeholder="Student Name"
               value={this.state.name}
               onChange={this.handleChange}
+              placeholder="Enter student name"
               className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
             />
           </div>
 
-          <input
-            type="number"
-            name="maths"
-            placeholder="Maths"
-            value={this.state.maths}
-            onChange={this.handleChange}
-            min="0"
-            max="100"
-            className="rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
-          />
+          {/* Maths */}
+          <div>
+            <label
+              htmlFor="maths"
+              className="mb-2 block text-sm font-medium text-slate-700"
+            >
+              Maths
+            </label>
+            <input
+              id="maths"
+              type="number"
+              name="maths"
+              value={this.state.maths}
+              onChange={this.handleChange}
+              placeholder="Enter marks"
+              min="0"
+              max="100"
+              className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+            />
+          </div>
 
-          <input
-            type="number"
-            name="english"
-            placeholder="English"
-            value={this.state.english}
-            onChange={this.handleChange}
-            min="0"
-            max="100"
-            className="rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
-          />
+          {/* English */}
+          <div>
+            <label
+              htmlFor="english"
+              className="mb-2 block text-sm font-medium text-slate-700"
+            >
+              English
+            </label>
+            <input
+              id="english"
+              type="number"
+              name="english"
+              value={this.state.english}
+              onChange={this.handleChange}
+              placeholder="Enter marks"
+              min="0"
+              max="100"
+              className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+            />
+          </div>
 
-          <input
-            type="number"
-            name="science"
-            placeholder="Science"
-            value={this.state.science}
-            onChange={this.handleChange}
-            min="0"
-            max="100"
-            className="rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
-          />
+          {/* Science */}
+          <div>
+            <label
+              htmlFor="science"
+              className="mb-2 block text-sm font-medium text-slate-700"
+            >
+              Science
+            </label>
+            <input
+              id="science"
+              type="number"
+              name="science"
+              value={this.state.science}
+              onChange={this.handleChange}
+              placeholder="Enter marks"
+              min="0"
+              max="100"
+              className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+            />
+          </div>
 
-          <input
-            type="number"
-            name="computer"
-            placeholder="Computer"
-            value={this.state.computer}
-            onChange={this.handleChange}
-            min="0"
-            max="100"
-            className="rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
-          />
+          {/* Computer */}
+          <div>
+            <label
+              htmlFor="computer"
+              className="mb-2 block text-sm font-medium text-slate-700"
+            >
+              Computer
+            </label>
+            <input
+              id="computer"
+              type="number"
+              name="computer"
+              value={this.state.computer}
+              onChange={this.handleChange}
+              placeholder="Enter marks"
+              min="0"
+              max="100"
+              className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+            />
+          </div>
 
-          <input
-            type="number"
-            name="hindi"
-            placeholder="Hindi"
-            value={this.state.hindi}
-            onChange={this.handleChange}
-            min="0"
-            max="100"
-            className="rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200 md:col-span-2"
-          />
+          {/* Hindi */}
+          <div className="md:col-span-2">
+            <label
+              htmlFor="hindi"
+              className="mb-2 block text-sm font-medium text-slate-700"
+            >
+              Hindi
+            </label>
+            <input
+              id="hindi"
+              type="number"
+              name="hindi"
+              value={this.state.hindi}
+              onChange={this.handleChange}
+              placeholder="Enter marks"
+              min="0"
+              max="100"
+              className="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+            />
+          </div>
         </div>
 
         {this.state.error && (
